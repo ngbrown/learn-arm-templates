@@ -26,3 +26,13 @@ New-AzResourceGroupDeployment `
  -TemplateParameterFile $parameterFile
 ```
 
+WhatIf:
+
+```powershell
+New-AzResourceGroupDeployment `
+ -Name $deploymentName `
+ -TemplateFile $templateFile `
+ -TemplateParameterFile $parameterFile `
+ -WhatIf -WhatIfResultFormat FullResourcePayloads
+```
+
