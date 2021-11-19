@@ -5,12 +5,21 @@ Get-AzSubscription
 ```
 
 ```powershell
-$context = Get-AzSubscription -SubscriptionId {Concierge subscription ID}
+$context = Get-AzSubscription -SubscriptionId {subscription Id}
+Set-AzContext $context
 ```
 
+If using training sandbox:
+
 ```powershell
+$context = Get-AzSubscription -SubscriptionName 'Concierge Subscription'
 Set-AzContext $context
-Set-AzDefault -ResourceGroupName {Learn Resource Group Id}
+```
+
+Then:
+
+```powershell
+Set-AzDefault -ResourceGroupName {resource group Id}
 ```
 
 To deploy, run the following Azure PowerShell commands in the terminal:
