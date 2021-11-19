@@ -35,13 +35,16 @@
         },
         "functions": [],
         "variables": {
-            "storageName": "[toLower(concat(parameters('storagePrefix'),uniqueString(resourceGroup().id)))]"
+            "storageName": "[toLower(concat(parameters('storagePrefix'),uniqueString(resourceGroup().id)))]",
+            "storageTags": {
+                "displayName": "[variables('storageName')]"
+            }
         },
         "resources": [{
             "name": "[variables('storageName')]",
             "type": "Microsoft.Storage/storageAccounts",
             "apiVersion": "2021-04-01",
-            "tags": "[parameters('resourceTags')]",
+            "tags": "[union(variables('storageTags'), parameters('resourceTags'))]",
             "location": "[resourceGroup().location]",
             "kind": "StorageV2",
             "sku": {
