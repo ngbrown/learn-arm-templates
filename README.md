@@ -17,12 +17,12 @@ To deploy, run the following Azure PowerShell commands in the terminal:
 
 ```powershell
 $templateFile = "azuredeploy.json"
+$parameterFile = "azuredeploy.parameters.dev.json"
 $today=Get-Date -Format "MM-dd-yyyy"
-$deploymentName="blanktemplate-"+"$today"
+$deploymentName="template-"+"$today"
 New-AzResourceGroupDeployment `
  -Name $deploymentName `
  -TemplateFile $templateFile `
- -storagePrefix learnexercise `
- -storageSKU Standard_GRS
+ -TemplateParameterFile $parameterFile
 ```
 
