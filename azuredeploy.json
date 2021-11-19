@@ -27,13 +27,15 @@
             }
         },
         "functions": [],
-        "variables": {},
+        "variables": {
+            "storageName": "[toLower(concat(parameters('storagePrefix'),uniqueString(resourceGroup().id)))]"
+        },
         "resources": [{
-            "name": "[toLower(concat(parameters('storagePrefix'),uniqueString(resourceGroup().id)))]",
+            "name": "[variables('storageName')]",
             "type": "Microsoft.Storage/storageAccounts",
             "apiVersion": "2021-04-01",
             "tags": {
-                "displayName": "[toLower(concat(parameters('storagePrefix'),uniqueString(resourceGroup().id)))]"
+                "displayName": "[variables('storageName')]"
             },
             "location": "[resourceGroup().location]",
             "kind": "StorageV2",
@@ -42,5 +44,10 @@
                 "tier": "Standard"
             }
         }],
-        "outputs": {}
+        "outputs": {
+            "storageEndpoint": {
+                "type": "object",
+                "value": "[reference(variables('storageName')).primaryEndpoints]"
+            }
+        }
     }
