@@ -22,7 +22,7 @@ $deploymentName="blanktemplate-"+"$today"
 New-AzResourceGroupDeployment `
  -Name $deploymentName `
  -TemplateFile $templateFile `
- -storageName learnexercise53183 `
+ -storagePrefix learnexercise `
  -storageSKU Standard_GRS
 ```
 
