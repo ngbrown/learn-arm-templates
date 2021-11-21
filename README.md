@@ -45,3 +45,8 @@ New-AzResourceGroupDeployment `
  -WhatIf -WhatIfResultFormat FullResourcePayloads
 ```
 
+Test:
+```powershell
+Import-Module ..\arm-ttk\arm-ttk\arm-ttk.psd1
+Test-AzTemplate -TemplatePath .\test\
+```
