@@ -14,7 +14,7 @@
     "variables": {},
     "resources": [
         {
-            "location": "westus"
+            "location": "[parameters('location')]"
         }
     ],
     "outputs": {}
