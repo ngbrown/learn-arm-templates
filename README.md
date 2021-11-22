@@ -83,3 +83,18 @@ $storageAccountName = (Get-AzResourceGroupDeployment -ResourceGroupName $resourc
 $storageAccount = Get-AzStorageAccount -ResourceGroupName $resourceGroupName
 Get-AzStorageBlob -Context $storageAccount.Context -Container config | Select-Object Name
 ```
+
+Add secure string to key vault:
+
+```powershell
+$KVNAME="tailwind-secrets" + (Get-Random -Count 1 -Maximum 9999999)
+$KVNAME
+$secretSecureString = ConvertTo-SecureString 'insecurepassword123!' -AsPlainText -Force
+$secret = Set-AzKeyVaultSecret -VaultName $KVNAME -Name vmPassword -SecretValue $secretSecureString
+```
+
+Get key vault for reference in parameter file:
+
+```powershell
+Get-AzKeyVault -VaultName $KVNAME | Select-Object -ExpandProperty ResourceId
+```
