@@ -68,3 +68,10 @@ scope=$(az group list --query "[?contains(name, '$resourceGroupName')].id" -o ts
 # Create the service principal with contributor rights to the resource group we just created
 az ad sp create-for-rbac --name $appName --role Contributor --scopes $scope --sdk-auth
 ```
+
+Get output from template deployment
+
+```powershell
+(Get-AzResourceGroupDeployment -ResourceGroupName $resourceGroupName -Name $deploymentName).Outputs
+Get-AzDeploymentScriptLog -ResourceGroupName $resourceGroupName -Name CopyConfigScript
+```
