@@ -75,3 +75,11 @@ Get output from template deployment
 (Get-AzResourceGroupDeployment -ResourceGroupName $resourceGroupName -Name $deploymentName).Outputs
 Get-AzDeploymentScriptLog -ResourceGroupName $resourceGroupName -Name CopyConfigScript
 ```
+
+Get files added to storage account
+
+```powershell
+$storageAccountName = (Get-AzResourceGroupDeployment -ResourceGroupName $resourceGroupName -Name $deploymentName).Outputs.storageAccountName.Value
+$storageAccount = Get-AzStorageAccount -ResourceGroupName $resourceGroupName
+Get-AzStorageBlob -Context $storageAccount.Context -Container config | Select-Object Name
+```
