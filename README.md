@@ -1,3 +1,7 @@
+## learn-json-arm-templates
+
+My working through the Microsoft Docs learning path for [Deploy and manage resources in Azure by using JSON ARM templates](https://docs.microsoft.com/en-us/learn/paths/deploy-manage-resource-manager-templates/).
+
 Connect:
 
 ```powershell
