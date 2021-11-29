@@ -98,3 +98,28 @@ Get key vault for reference in parameter file:
 ```powershell
 Get-AzKeyVault -VaultName $KVNAME | Select-Object -ExpandProperty ResourceId
 ```
+
+Store a template spec:
+
+```powershell
+New-AzTemplateSpec `
+  -ResourceGroupName learn-df8b5cb1-a2c7-4347-a6cb-6a9bf0a7b1e8 `
+  -Name ToyCosmosDBAccount `
+  -Location westus `
+  -DisplayName 'Cosmos DB account' `
+  -Description "This template spec creates a Cosmos DB account that meets our company's requirements." `
+  -Version '1.0' `
+  -TemplateFile azuredeploy.json
+```
+
+Deploy a template spec:
+
+```powershell
+$templateSpecVersionResourceId = (`
+   Get-AzTemplateSpec `
+      -ResourceGroupName learn-df8b5cb1-a2c7-4347-a6cb-6a9bf0a7b1e8 `
+      -Name ToyCosmosDBAccount `
+      -Version 1.0 `
+   ).Versions[0].Id
+New-AzResourceGroupDeployment -TemplateSpecId $templateSpecVersionResourceId
+```
