@@ -123,3 +123,21 @@ $templateSpecVersionResourceId = (`
    ).Versions[0].Id
 New-AzResourceGroupDeployment -TemplateSpecId $templateSpecVersionResourceId
 ```
+
+Export a template spec:
+
+```powershell
+Export-AzTemplateSpec `
+  -ResourceGroupName learn-df8b5cb1-a2c7-4347-a6cb-6a9bf0a7b1e8 `
+  -Name ToyCosmosDBAccount `
+  -Version 1.0 `
+  -OutputFolder ./export
+```
+
+Get own user account's principle ID:
+
+```powershell
+$token = (Get-AzAccessToken -ResourceUrl "https://graph.windows.net/").Token
+$userObjectId = (Invoke-RestMethod -Uri 'https://graph.windows.net/me?api-version=1.6' -Headers @{ 'Authorization' = "Bearer $token"}).objectID
+```
+
